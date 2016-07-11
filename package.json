@@ -1,0 +1,24 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^0.9.0",
+    "ncp": "^2.0.0",
+    "node-sass": "^3.8.0",
+    "parallelshell": "^2.0.0",
+    "webpack": "^1.13.1"
+  },
+  "scripts": {
+    "start": "parallelshell 'webpack --watch' 'node ./watch.js' 'npm run server'",
+    "prestart": "webpack && npm run copy && npm run sass",
+    "server": "http-server ./dist -c-1",
+    "copy": "ncp src/public/ dist/ --stopOnErr",
+    "sass": "node-sass -o dist/css -q --output-style compact src/scss/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
