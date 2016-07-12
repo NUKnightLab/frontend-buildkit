@@ -5,6 +5,8 @@
   "main": "app.js",
   "dependencies": {},
   "devDependencies": {
+    "handlebars": "^4.0.5",
+    "handlebars-loader": "^1.3.0",
     "http-server": "^0.9.0",
     "ncp": "^2.0.0",
     "node-sass": "^3.8.0",
