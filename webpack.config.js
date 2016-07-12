@@ -13,8 +13,7 @@ module.exports = {
     filename: "[name].js"
   },
   resolve: {
-    root: componentPath,
-    fallback: path.join(__dirname, "helpers")
+    root: componentPath
   },
   resolveLoader: {
     root: path.join(__dirname, "node_modules")

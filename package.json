@@ -22,8 +22,9 @@
     "tiny-lr": "^0.2.1"
   },
   "scripts": {
-    "start": "parallelshell 'webpack --watch' 'node ./watch.js' 'npm run server'",
-    "prestart": "webpack && npm run templates && npm run copy && npm run sass",
+    "start:dev": "parallelshell 'webpack --watch' 'node ./watch.js' 'npm run server'",
+    "prestart:dev": "webpack && npm run templates && npm run copy && npm run sass",
+    "start:prod": "webpack -p && npm run templates && npm run copy && npm run sass",
     "server": "http-server ./dist -c-1",
     "copy": "ncp src/public/ dist/ --stopOnErr",
     "sass": "node-sass -o dist/css -q --output-style compact src/scss/",
