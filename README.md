@@ -1,7 +1,7 @@
 # Installation
 
-`npm install
+`npm install`
 
 # Run Project
-`npm run start
+`npm run start`
 
