@@ -23,10 +23,6 @@ function renderPage(template, layout) {
 }
 
 function build() {
-
-  var globby = require('globby'),
-      _ = require('lodash');
-
   var hbsTemplates = globby.sync('src/templates/*.hbs');
 
   _.forEach(hbsTemplates, function(file, i) {
