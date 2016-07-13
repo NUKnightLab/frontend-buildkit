@@ -23,16 +23,19 @@ function renderPage(template, layout) {
 }
 
 function build() {
-  var hbsTemplates = globby.sync('src/templates/*.hbs');
+  var hbsTemplates = globby.sync('src/templates/**/*.hbs');
 
   _.forEach(hbsTemplates, function(file, i) {
     var filePattern = path.dirname(file).split('src/templates/')[1],
         fileName = path.basename(file, '.hbs'),
-        template = renderTemplate(file);
-        
-        page = renderPage(template, 'src/templates/layouts/default.hbs');
+        template = renderTemplate(file),
+        page = renderPage(template, 'layouts/default.hbs');
 
-    fs.outputFileSync(`dist/${fileName}.html`, page, 'utf8');
+    if(!!filePattern.length) {
+      fs.outputFileSync(`dist/templates/${filePattern}/${fileName}.html`)
+    } else {
+      fs.outputFileSync(`dist/templates/${fileName}.html`, page, 'utf8');
+    }
   });
 
 }
