@@ -23,12 +23,13 @@
     "tiny-lr": "^0.2.1"
   },
   "scripts": {
-    "start:dev": "parallelshell 'webpack --watch' 'npm run watch' 'npm run server'",
-    "prestart:dev": "npm run clean && webpack && npm run templates && npm run copy && npm run sass",
-    "start:prod": "webpack -p && npm run templates && npm run copy && npm run sass && node tasks/minify-css.js",
+    "start": "parallelshell 'webpack --watch' 'npm run watch' 'npm run server'",
+    "prestart": "npm run clean && webpack && npm run compile",
+    "dist": "webpack -p && npm run compile && node tasks/minify-css.js",
     "clean": "rimraf dist/",
     "watch": "node tasks/watch.js",
     "server": "http-server ./dist -c-1",
+    "compile": "npm run templates && npm run copy && npm run sass",
     "copy": "ncp src/public/ dist/ --stopOnErr",
     "sass": "node-sass -o dist/css -q --output-style compact src/scss/",
     "templates": "node tasks/compile-hbs.js",
