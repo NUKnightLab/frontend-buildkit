@@ -9,8 +9,11 @@ To use this template, your computer needs:
 
 ## Using the BuildKit
 Install the BuildKit by running this command from the project directory:
-`npm install`
+```bash
+npm install
+```
 
 Use this command to run the auto-compiler:
-`npm run start`
-
+```bash
+npm run start
+```
