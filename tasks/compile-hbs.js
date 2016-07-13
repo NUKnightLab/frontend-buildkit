@@ -34,9 +34,9 @@ function build() {
         fileName = path.basename(file, '.hbs'),
         template = renderTemplate(file);
         
-        page = renderPage(template, 'layouts/default.hbs');
+        page = renderPage(template, 'src/templates/layouts/default.hbs');
 
-    fs.outputFileSync(`dist/templates/${fileName}.html`, page, 'utf8');
+    fs.outputFileSync(`dist/${fileName}.html`, page, 'utf8');
   });
 
 }
