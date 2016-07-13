@@ -13,21 +13,27 @@
     "webpack": "^1.13.1"
   },
   "devDependencies": {
+    "cssmin": "^0.4.3",
     "exit-hook": "^1.1.1",
     "front-matter": "^2.1.0",
     "fs-extra": "^0.30.0",
     "globby": "^5.0.0",
     "lodash": "^4.13.1",
+    "rimraf": "^2.5.3",
     "shelljs": "^0.7.0",
     "tiny-lr": "^0.2.1"
   },
   "scripts": {
-    "start": "parallelshell 'webpack --watch' 'node ./watch.js' 'npm run server'",
-    "prestart": "webpack && npm run templates && npm run copy && npm run sass",
+    "start": "parallelshell 'webpack --watch' 'npm run watch' 'npm run server'",
+    "prestart": "npm run clean && webpack && npm run compile",
+    "dist": "webpack -p && npm run compile && node tasks/minify-css.js",
+    "clean": "rimraf dist/",
+    "watch": "node tasks/watch.js",
     "server": "http-server ./dist -c-1",
+    "compile": "npm run templates && npm run copy && npm run sass",
     "copy": "ncp src/public/ dist/ --stopOnErr",
     "sass": "node-sass -o dist/css -q --output-style compact src/scss/",
-    "templates": "node compile-hbs.js",
+    "templates": "node tasks/compile-hbs.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
