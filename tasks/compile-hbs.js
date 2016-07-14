@@ -7,7 +7,7 @@ var _ = require('lodash'),
     helper = require('./helpers/partial-builder.js');
 
 //run Helpers
-helper.getPartial(Handlebars, 'src/templates/partials');
+helper.getPartial(Handlebars, 'src/templates/partials/');
 
 function renderTemplate(templatePath) {
   var file = fs.readFileSync(templatePath, 'utf8'),

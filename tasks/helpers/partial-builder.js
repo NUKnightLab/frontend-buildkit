@@ -3,7 +3,7 @@ var globby = require('globby'),
 
 var getPartial = function(Handlebars, rootPath) {
   globby.sync(rootPath + '*.hbs').forEach(function(file) {
-    var partialName = file.replace(rootPath, "").split("/")[1].replace(".hbs", "");
+    var partialName = file.replace(rootPath, "").replace(".hbs", "");
     Handlebars.registerPartial(partialName, fs.readFileSync(file, "utf8"));
   })
 }
