@@ -3,7 +3,11 @@ var _ = require('lodash'),
     fs = require('fs-extra'),
     path = require('path'),
     Handlebars = require('handlebars'),
-    globby = require('globby');
+    globby = require('globby'),
+    helper = require('./helpers/partial-builder.js');
+
+//run Helpers
+helper.getPartial(Handlebars, 'src/templates/partials');
 
 function renderTemplate(templatePath) {
   var file = fs.readFileSync(templatePath, 'utf8'),
@@ -23,20 +27,19 @@ function renderPage(template, layout) {
 }
 
 function build() {
-
-  var globby = require('globby'),
-      _ = require('lodash');
-
-  var hbsTemplates = globby.sync('src/templates/*.hbs');
+  var hbsTemplates = globby.sync('src/templates/**/*.hbs');
 
   _.forEach(hbsTemplates, function(file, i) {
     var filePattern = path.dirname(file).split('src/templates/')[1],
         fileName = path.basename(file, '.hbs'),
-        template = renderTemplate(file);
-        
+        template = renderTemplate(file),
         page = renderPage(template, 'src/templates/layouts/default.hbs');
 
-    fs.outputFileSync(`dist/${fileName}.html`, page, 'utf8');
+    if(!!filePattern) {
+      fs.outputFileSync(`dist/templates/${filePattern}/${fileName}.html`)
+    } else {
+      fs.outputFileSync(`dist/templates/${fileName}.html`, page, 'utf8');
+    }
   });
 
 }
