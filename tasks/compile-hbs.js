@@ -1,28 +1,39 @@
 var _ = require('lodash'),
     fm = require('front-matter'),
+    yml = require('yamljs'),
     fs = require('fs-extra'),
     path = require('path'),
     Handlebars = require('handlebars'),
     globby = require('globby'),
+    debug = require('./helpers/debug-hbs.js'),
     helper = require('./helpers/partial-builder.js');
+
+data = getData('src/data/data.yml');
 
 //run Helpers
 helper.getPartial(Handlebars, 'src/templates/partials/');
 
-function renderTemplate(templatePath) {
+function getData(file) {
+    fileName = path.basename(file, '.yml');
+
+    return yml.load(file);
+}
+
+function renderTemplate(templatePath, data) {
   var file = fs.readFileSync(templatePath, 'utf8'),
       frontMatter = fm(file),
-      context = frontMatter.attributes,
+      fmData = frontMatter.attributes,
+      context = _.extend(fmData, data),
       template = Handlebars.compile(frontMatter.body);
 
   return template(context);
 }
 
-function renderPage(template, layout) {
+function renderPage(template, layout, data) {
   var file = fs.readFileSync(layout, 'utf8'),
-      context = {body: template},
-      page = Handlebars.compile(file);
- 
+      page = Handlebars.compile(file),
+      context = _.extend({body: template}, data);
+
   return page(context);
 }
 
@@ -32,8 +43,8 @@ function build() {
   _.forEach(hbsTemplates, function(file, i) {
     var filePattern = path.dirname(file).split('src/templates/')[1],
         fileName = path.basename(file, '.hbs'),
-        template = renderTemplate(file),
-        page = renderPage(template, 'src/templates/layouts/default.hbs');
+        template = renderTemplate(file, data),
+        page = renderPage(template, 'src/templates/layouts/default.hbs', data);
 
     if(!!filePattern) {
       fs.outputFileSync(`dist/templates/${filePattern}/${fileName}.html`)
