@@ -6,7 +6,7 @@ var chokidar = require('chokidar'),
 
     tinyServer = tinylr();
 
-var watcher = chokidar.watch(['src/scss', 'dist/css'], {
+var watcher = chokidar.watch(['src/scss', 'dist/css', 'src/js', 'src/templates', 'src/assets'], {
   ignored: /[\/\\]\./,
   ignoreInitial: true
 });
@@ -23,14 +23,26 @@ watcher.on("change", function(file) {
   runProcess(file);
 })
 
+watcher.on("unlink", function(file) {
+  runProcess(file);
+})
+
 function runProcess(file) {
   var filext = path.extname(file);
   if(filext === '.scss') {
     shell.exec('npm run sass', function() {
       console.log('Rebuilding sass...');
     });
-  } else if ((filext === 'css') || (filext === 'js')) {
+  } else if((filext === '.css') || (filext === '.js')) {
     tinylr.changed(file);
+  } else if(filext === '.hbs') {
+    shell.exec('npm run templates', function() {
+      console.log('Rebuilding templates...')
+    })
+  } else {
+    shell.exec('npm run copy', function() {
+      console.log('Copying assets...')
+    })
   }
 }
 
