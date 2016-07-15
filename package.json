@@ -1,7 +1,8 @@
 {
-  "name": "example",
+  "name": "frontend-buildkit",
   "version": "1.0.0",
-  "description": "",
+  "description": "Knight Lab frontend buildkit",
+  "private": true,
   "main": "app.js",
   "dependencies": {
     "handlebars": "^4.0.5",
