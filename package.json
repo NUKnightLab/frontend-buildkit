@@ -14,8 +14,8 @@
     "webpack": "^1.13.1"
   },
   "devDependencies": {
-    "cssmin": "^0.4.3",
     "chokidar": "^1.6.0",
+    "cssmin": "^0.4.3",
     "exit-hook": "^1.1.1",
     "front-matter": "^2.1.0",
     "fs-extra": "^0.30.0",
@@ -23,7 +23,8 @@
     "lodash": "^4.13.1",
     "rimraf": "^2.5.3",
     "shelljs": "^0.7.0",
-    "tiny-lr": "^0.2.1"
+    "tiny-lr": "^0.2.1",
+    "yamljs": "^0.2.8"
   },
   "scripts": {
     "start": "parallelshell 'webpack --watch' 'npm run watch' 'npm run server'",
