@@ -47,7 +47,9 @@ function build() {
         page = renderPage(template, 'src/templates/layouts/default.hbs', data);
 
     if(!!filePattern) {
-      fs.outputFileSync(`dist/templates/${filePattern}/${fileName}.html`)
+      fs.outputFileSync(`dist/templates/${filePattern}/${fileName}.html`, page, 'utf8')
+    } else if(fileName === 'index') {
+        fs.outputFileSync(`dist/index.html`, page, 'utf8')
     } else {
       fs.outputFileSync(`dist/templates/${fileName}.html`, page, 'utf8');
     }
