@@ -1,14 +1,15 @@
-var webpack = require('webpack'),
-    path = require('path'),
-
-    componentPath = path.resolve('./src/js');
+const webpack = require('webpack'),
+      path = require('path'),
+      UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     context: path.join(__dirname),
-    entry: ["./src/js/app.js"],
+    entry: {
+        app: "./src/js/app.js"
+    },
     output: {
         path: path.join(__dirname, "./dist/js"),
-        filename: "[name].js"
+        filename: "[name].js",
     },
     resolve: {
         modules: [path.resolve('./src/js'), "node_modules"]
@@ -25,7 +26,7 @@ module.exports = {
                 }
             }
         ]
-    ,
+    },
     optimization: {
         minimize:true,
         minimizer: [
