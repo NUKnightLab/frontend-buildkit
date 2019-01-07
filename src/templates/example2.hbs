@@ -1,4 +1,11 @@
 ---
 person: 'Benjamin'
 ---
-<p>Hello&nbsp;{{person}}</p>
+{{partials 'head' this }}
+<body>
+    <p>Hello&nbsp;{{person}}</p>
+
+    <p>Hello this is a paragraph.</p>
+
+    {{partials 'footer' this }}
+</body>

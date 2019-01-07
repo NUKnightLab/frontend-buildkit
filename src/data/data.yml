@@ -1,2 +1,9 @@
-that: 'head'
-thing: 'foot'
+title: Frontend BuildKit
+site_name: Frontend BuildKit
+site_url: "https://github.com/NUKnightLab/frontend-buildkit/"
+analytics_id: "UA-27829802-6"
+main_image: "https://cdn.knightlab.com/libs/orangeline/latest/assets/favicons/apple-touch-icon.png"
+description: This is the basic starter kit for Knight Lab frontend projects
+keywords: "app, javascript"
+css: "/css/main.css"
+js: "/js/app.js"
