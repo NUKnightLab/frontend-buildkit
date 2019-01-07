@@ -22,3 +22,21 @@ Use this command to compile for distribution:
 ```bash
 npm run dist
 ```
+
+## Configuration
+### JS
+The main *js* file is defined in `webpack.config`
+```js
+entry: {
+    app: "./src/js/your_app_name.js"
+},
+```
+
+### CSS
+The *css* name is defined in `tasks/minify-css.js`
+```js
+css = fs.readFileSync("dist/css/your_css_name.css", 'utf8'),
+```
+
+### Handlebars html
+The data variables for the handlebars templates are in `src/data/data.yml`
