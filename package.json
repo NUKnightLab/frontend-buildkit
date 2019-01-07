@@ -2,10 +2,16 @@
     "name": "frontend-buildkit",
     "version": "1.2.0",
     "description": "Knight Lab Frontend Buildkit",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NUKnightLab/frontend-buildkit.git"
+    },
     "private": true,
     "main": "app.js",
     "dependencies": {},
     "devDependencies": {
+        "add-banner": "^1.0.0",
+        "adm-zip": "^0.4.11",
         "babel-core": "^6.26.0",
         "babel-loader": "^7.1.4",
         "babel-preset-env": "^1.6.1",
@@ -25,7 +31,8 @@
         "prompt": "^1.0.0",
         "rimraf": "^2.5.3",
         "shelljs": "^0.7.0",
-        "tiny-lr": "^0.2.1",
+        "simple-git": "^1.96.0",
+        "tiny-lr": "^1.1.1",
         "uglifyjs-webpack-plugin": "^1.2.7",
         "webpack": "^4.16.0",
         "webpack-cli": "^3.0.8",
