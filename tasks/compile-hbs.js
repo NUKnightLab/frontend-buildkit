@@ -71,21 +71,26 @@ function build() {
 	var hbsviews = globby.sync('src/templates/**/*.hbs');
 
 	_.forEach(hbsviews, function(file, i) {
-		var filePattern = path.dirname(file).split('src/templates/')[1],
-			fileName = path.basename(file, '.hbs');
+		let filePattern = path.dirname(file).split('src/templates/')[1];
+        let fileName = path.basename(file, '.hbs');
 		if (filePattern === undefined) {
 			var patternData = yml.load('src/data/data.yml'),
 				renderIndex = renderTemplate(file, viewData),
 				page = renderPage(renderIndex, 'src/templates/layouts/default.hbs');
 			fs.outputFileSync(`dist/${fileName}.html`, page, 'utf8');
-		} else if (filePattern === 'layouts') {
-			return;
 		} else {
-			var template = renderTemplate(file, viewData),
-				page = renderPage(template, 'src/templates/layouts/default.hbs', viewData);
+            let pattern_type = filePattern.split('/')[0];
+            if (pattern_type === 'layouts') {
+    			return;
+            } else if (pattern_type === 'partials') {
+                return;
+            } else {
+    			let template = renderTemplate(file, viewData),
+    				page = renderPage(template, 'src/templates/layouts/default.hbs', viewData);
 
-			fs.outputFileSync(`dist/templates/${filePattern}/${fileName}.html`, page, 'utf8')
-		}
+    			fs.outputFileSync(`dist/${filePattern}/${fileName}.html`, page, 'utf8')
+    		}
+        }
 	});
 }
 
