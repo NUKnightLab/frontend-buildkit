@@ -7,3 +7,22 @@ description: This is the basic starter kit for Knight Lab frontend projects
 keywords: "app, javascript"
 css: "/css/main.css"
 js: "/js/app.js"
+subnav:
+    -
+        title: "CSS: Getting Started"
+        link: "/pages/css-getting-started.html"
+    -
+        title: "CSS: Documentation"
+        link: "/pages/css-documentation.html"
+    -
+        title: "Templates"
+        link: "/pages/templates.html"
+    -
+        title: "Editorial"
+        link: "/pages/editorial.html"
+    -
+        title: "Video"
+        link: "/pages/video.html"
+    -
+        title: "Code"
+        link: "/pages/code.html"
