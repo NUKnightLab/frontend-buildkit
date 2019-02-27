@@ -37,3 +37,7 @@ Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
                 ? options.fn(this)
                 : options.inverse(this);
 });
+
+Handlebars.registerHelper("setVar", function(varName, varValue, options) {
+  options.data.root[varName] = varValue;
+});

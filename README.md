@@ -1,14 +1,28 @@
 # Frontend BuildKit
 This is the basic starter kit for Knight Lab frontend projects
 
-## Installation
+## Using Docker for Dev
+An alternative to installing to your system is to just use Docker
+Make sure you have [Docker](https://www.docker.com/products/docker-desktop) installed.
+
+### Install 
+Only need to run this once on your machine.
+```
+docker-compose -f docker-compose.builder.yml run --rm install
+```
+
+### Run Dev
+Run this everytime you want to work on the project.
+```
+docker-compose up
+```
+
+## Local Installation
 
 To use this template, your computer needs:
 
 - [NodeJS](https://nodejs.org/en/) (0.12 or greater)
 
-
-## Using the BuildKit
 Install the BuildKit dependencies by running this command from the project directory:
 ```bash
 npm install
